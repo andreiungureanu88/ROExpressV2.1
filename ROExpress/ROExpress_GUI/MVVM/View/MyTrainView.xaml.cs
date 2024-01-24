@@ -29,12 +29,13 @@ namespace ROExpress_GUI.MVVM.View
         public MyTrainView()
         {
             InitializeComponent();
+            resetMap();
            
         }
         
         void drawNewRoute(List<GetCityHops_Result> hops)
         {
-            myMap.Children.Clear();
+            resetMap();
             MapPolyline polyline = new MapPolyline();
             polyline.Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Blue);
             polyline.StrokeThickness = 5;
@@ -43,14 +44,25 @@ namespace ROExpress_GUI.MVVM.View
             for(int i=0;i<hops.Count;i++)
             {
                 stations.Add(new Location(hops[i].Latitudine, hops[i].Longitudine));
-                Pushpin pin = new Pushpin();
-                pin.Location = new Location(hops[i].Latitudine, hops[i].Longitudine);
-                pin.Content = hops[i].Nume_Oras;
-                pin.FontSize = 6;
-                myMap.Children.Add(pin);
             }
             polyline.Locations = stations;
             myMap.Children.Add(polyline);
+        }
+
+        private void resetMap()
+        {
+            myMap.Children.Clear();
+            EntityController controller = new EntityController();
+            List<RailwayStations> railwayStations = controller.GetRailwayStationsEntity();
+
+            for (int i = 0; i < railwayStations.Count; i++)
+            {
+                Pushpin pin = new Pushpin();
+                pin.Location = new Location(railwayStations[i].City_Latitude, railwayStations[i].City_Longitude);
+                pin.Content = railwayStations[i].City_Name;
+                pin.FontSize = 6;
+                myMap.Children.Add(pin);
+            }
         }
         
 
@@ -81,7 +93,7 @@ namespace ROExpress_GUI.MVVM.View
             List<GetCityHops_Result> hops = controller.GetCityHopsEntity(searchTextBoxText.Text);
             drawNewRoute(hops);
 
-            //functie de la uai
+            
             
         }
     }
