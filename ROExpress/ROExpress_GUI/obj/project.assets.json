@@ -4775,20 +4775,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\andre\\.nuget\\packages\\": {}
+    "C:\\Users\\Caprita\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\andre\\Desktop\\ROExpressV2.1\\ROExpress\\ROExpress_GUI\\ROExpress_GUI.csproj",
+      "projectUniqueName": "X:\\ROExpressV2.1\\ROExpress\\ROExpress_GUI\\ROExpress_GUI.csproj",
       "projectName": "ROExpress_GUI",
-      "projectPath": "C:\\Users\\andre\\Desktop\\ROExpressV2.1\\ROExpress\\ROExpress_GUI\\ROExpress_GUI.csproj",
-      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\andre\\Desktop\\ROExpressV2.1\\ROExpress\\ROExpress_GUI\\obj\\",
+      "projectPath": "X:\\ROExpressV2.1\\ROExpress\\ROExpress_GUI\\ROExpress_GUI.csproj",
+      "packagesPath": "C:\\Users\\Caprita\\.nuget\\packages\\",
+      "outputPath": "X:\\ROExpressV2.1\\ROExpress\\ROExpress_GUI\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
-        "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Caprita\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

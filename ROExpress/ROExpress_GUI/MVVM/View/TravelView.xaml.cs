@@ -31,8 +31,7 @@ namespace ROExpress_GUI.MVVM.View
             InitializeComponent();
             SelectedDate = DateTime.Now.ToString("MM/dd/yyyy");
             TravelDatePicker.Text = SelectedDate;
-        }
-
+        }   
 
         public TimeSpan CalculateTimeDifference(string startTime, string endTime)
         {
@@ -113,6 +112,30 @@ namespace ROExpress_GUI.MVVM.View
             {
                 ArrivesTextBox.Focus();
             }
+            if (e.Key == Key.LeftCtrl)
+            {
+                EntityController controller = new EntityController();
+                List<RailwayStations> railwayStations = new List<RailwayStations>();
+                railwayStations = controller.GetRailwayStationsEntity();
+
+                List<string> stationsNames = new List<string>();
+                foreach (RailwayStations station in railwayStations)
+                {
+                    stationsNames.Add(station.City_Name);
+                }
+                //autocomplete station name
+                var textBox = LeavesTextBox.Template.FindName("Search", LeavesTextBox) as TextBox;
+                foreach (string stationName in stationsNames)
+                {
+                    if (stationName.StartsWith(textBox.Text))
+                    {
+                        (LeavesTextBox.Template.FindName("Search", LeavesTextBox) as TextBox).Text = stationName;
+                        LeavesTextBox.Focus();
+                        break;
+                    }
+                }
+
+            }
         }
 
         private void ArrivesTextBox_KeyUp(object sender, KeyEventArgs e)
@@ -120,6 +143,31 @@ namespace ROExpress_GUI.MVVM.View
             if (e.Key == Key.Enter)
             {
                 FindTrain(sender, e);
+            }
+            if (e.Key == Key.LeftCtrl)
+            {
+                EntityController controller = new EntityController();
+                List<RailwayStations> railwayStations = new List<RailwayStations>();
+                railwayStations = controller.GetRailwayStationsEntity();
+
+                List<string> stationsNames = new List<string>();
+                foreach (RailwayStations station in railwayStations)
+                {
+                    stationsNames.Add(station.City_Name);
+                }
+                //autocomplete station name
+                var textBox = ArrivesTextBox.Template.FindName("Search", ArrivesTextBox) as TextBox;
+                foreach (string stationName in stationsNames)
+                {
+
+                    if (stationName.StartsWith(textBox.Text))
+                    {
+                        (ArrivesTextBox.Template.FindName("Search", ArrivesTextBox) as TextBox).Text = stationName;
+                        ArrivesTextBox.Focus();
+                        break;
+                    }
+                }
+
             }
         }
 

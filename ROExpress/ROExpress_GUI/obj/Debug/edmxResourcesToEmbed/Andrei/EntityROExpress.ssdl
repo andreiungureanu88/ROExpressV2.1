@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ROExpressEntity.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bilet_Tren">
+    <Key>
+      <PropertyRef Name="ID_Bilet_Tren" />
+    </Key>
+    <Property Name="ID_Bilet_Tren" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Tren" Type="int" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NumarVagon" Type="int" Nullable="false" />
+    <Property Name="LocVagon" Type="int" Nullable="false" />
+    <Property Name="Clasa" Type="int" Nullable="false" />
+    <Property Name="DataTren" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Calatorii">
+    <Key>
+      <PropertyRef Name="ID_Calatorie" />
+    </Key>
+    <Property Name="ID_Calatorie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Statie_Plecare" Type="int" />
+    <Property Name="Oras_Sosire" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Ora_Plecare" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Ora_Sosire" Type="time" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Statii">
+    <Key>
+      <PropertyRef Name="ID_Statie" />
+    </Key>
+    <Property Name="ID_Statie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nume_Oras" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Latitudine" Type="float" Nullable="false" />
+    <Property Name="Longitudine" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Statii_Tren">
+    <Key>
+      <PropertyRef Name="ID_Statie_Tren" />
+    </Key>
+    <Property Name="ID_Statie_Tren" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Statie" Type="int" />
+    <Property Name="ID_Tren" Type="int" />
+    <Property Name="Ora_Plecare" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Ora_Sosire" Type="time" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tipuri_Vagoane">
+    <Key>
+      <PropertyRef Name="ID_Vagon" />
+    </Key>
+    <Property Name="ID_Vagon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Clasa_Vagon" Type="int" Nullable="false" />
+    <Property Name="Nr_Locuri" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Trenuri">
+    <Key>
+      <PropertyRef Name="ID_Tren" />
+    </Key>
+    <Property Name="ID_Tren" Type="int" Nullable="false" />
+    <Property Name="Tip_Tren" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="Viteza_Maxima" Type="int" />
+  </EntityType>
+  <EntityType Name="Vagoane_Tren">
+    <Key>
+      <PropertyRef Name="ID_Vagoane_Tren" />
+    </Key>
+    <Property Name="ID_Vagoane_Tren" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Tren" Type="int" />
+    <Property Name="ID_Vagon" Type="int" />
+    <Property Name="Nr_Vagon" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Bilet_Tre__ID_Tr__46E78A0C">
+    <End Role="Trenuri" Type="Self.Trenuri" Multiplicity="0..1" />
+    <End Role="Bilet_Tren" Type="Self.Bilet_Tren" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trenuri">
+        <PropertyRef Name="ID_Tren" />
+      </Principal>
+      <Dependent Role="Bilet_Tren">
+        <PropertyRef Name="ID_Tren" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Calatorii__ID_St__398D8EEE">
+    <End Role="Statii" Type="Self.Statii" Multiplicity="0..1" />
+    <End Role="Calatorii" Type="Self.Calatorii" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statii">
+        <PropertyRef Name="ID_Statie" />
+      </Principal>
+      <Dependent Role="Calatorii">
+        <PropertyRef Name="ID_Statie_Plecare" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Statii_Tr__ID_St__3E52440B">
+    <End Role="Statii" Type="Self.Statii" Multiplicity="0..1" />
+    <End Role="Statii_Tren" Type="Self.Statii_Tren" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statii">
+        <PropertyRef Name="ID_Statie" />
+      </Principal>
+      <Dependent Role="Statii_Tren">
+        <PropertyRef Name="ID_Statie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Statii_Tr__ID_Tr__3F466844">
+    <End Role="Trenuri" Type="Self.Trenuri" Multiplicity="0..1" />
+    <End Role="Statii_Tren" Type="Self.Statii_Tren" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trenuri">
+        <PropertyRef Name="ID_Tren" />
+      </Principal>
+      <Dependent Role="Statii_Tren">
+        <PropertyRef Name="ID_Tren" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Vagoane_T__ID_Tr__440B1D61">
+    <End Role="Trenuri" Type="Self.Trenuri" Multiplicity="0..1" />
+    <End Role="Vagoane_Tren" Type="Self.Vagoane_Tren" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trenuri">
+        <PropertyRef Name="ID_Tren" />
+      </Principal>
+      <Dependent Role="Vagoane_Tren">
+        <PropertyRef Name="ID_Tren" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Vagoane_T__ID_Va__44FF419A">
+    <End Role="Tipuri_Vagoane" Type="Self.Tipuri_Vagoane" Multiplicity="0..1" />
+    <End Role="Vagoane_Tren" Type="Self.Vagoane_Tren" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipuri_Vagoane">
+        <PropertyRef Name="ID_Vagon" />
+      </Principal>
+      <Dependent Role="Vagoane_Tren">
+        <PropertyRef Name="ID_Vagon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="GetCityHops" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDTren" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetJourney" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Departures" Type="varchar" Mode="In" />
+    <Parameter Name="Arrival" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="ROExpressEntityStoreContainer">
+    <EntitySet Name="Bilet_Tren" EntityType="Self.Bilet_Tren" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Calatorii" EntityType="Self.Calatorii" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Statii" EntityType="Self.Statii" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Statii_Tren" EntityType="Self.Statii_Tren" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tipuri_Vagoane" EntityType="Self.Tipuri_Vagoane" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Trenuri" EntityType="Self.Trenuri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vagoane_Tren" EntityType="Self.Vagoane_Tren" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Bilet_Tre__ID_Tr__46E78A0C" Association="Self.FK__Bilet_Tre__ID_Tr__46E78A0C">
+      <End Role="Trenuri" EntitySet="Trenuri" />
+      <End Role="Bilet_Tren" EntitySet="Bilet_Tren" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Calatorii__ID_St__398D8EEE" Association="Self.FK__Calatorii__ID_St__398D8EEE">
+      <End Role="Statii" EntitySet="Statii" />
+      <End Role="Calatorii" EntitySet="Calatorii" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Statii_Tr__ID_St__3E52440B" Association="Self.FK__Statii_Tr__ID_St__3E52440B">
+      <End Role="Statii" EntitySet="Statii" />
+      <End Role="Statii_Tren" EntitySet="Statii_Tren" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Statii_Tr__ID_Tr__3F466844" Association="Self.FK__Statii_Tr__ID_Tr__3F466844">
+      <End Role="Trenuri" EntitySet="Trenuri" />
+      <End Role="Statii_Tren" EntitySet="Statii_Tren" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Vagoane_T__ID_Tr__440B1D61" Association="Self.FK__Vagoane_T__ID_Tr__440B1D61">
+      <End Role="Trenuri" EntitySet="Trenuri" />
+      <End Role="Vagoane_Tren" EntitySet="Vagoane_Tren" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Vagoane_T__ID_Va__44FF419A" Association="Self.FK__Vagoane_T__ID_Va__44FF419A">
+      <End Role="Tipuri_Vagoane" EntitySet="Tipuri_Vagoane" />
+      <End Role="Vagoane_Tren" EntitySet="Vagoane_Tren" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

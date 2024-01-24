@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ROExpressEntityStoreContainer" CdmEntityContainer="ROExpressEntities">
+    <EntitySetMapping Name="Bilet_Tren">
+      <EntityTypeMapping TypeName="ROExpressEntity.Bilet_Tren">
+        <MappingFragment StoreEntitySet="Bilet_Tren">
+          <ScalarProperty Name="ID_Bilet_Tren" ColumnName="ID_Bilet_Tren" />
+          <ScalarProperty Name="ID_Tren" ColumnName="ID_Tren" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="NumarVagon" ColumnName="NumarVagon" />
+          <ScalarProperty Name="LocVagon" ColumnName="LocVagon" />
+          <ScalarProperty Name="Clasa" ColumnName="Clasa" />
+          <ScalarProperty Name="DataTren" ColumnName="DataTren" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Calatoriis">
+      <EntityTypeMapping TypeName="ROExpressEntity.Calatorii">
+        <MappingFragment StoreEntitySet="Calatorii">
+          <ScalarProperty Name="ID_Calatorie" ColumnName="ID_Calatorie" />
+          <ScalarProperty Name="ID_Statie_Plecare" ColumnName="ID_Statie_Plecare" />
+          <ScalarProperty Name="Oras_Sosire" ColumnName="Oras_Sosire" />
+          <ScalarProperty Name="Ora_Plecare" ColumnName="Ora_Plecare" />
+          <ScalarProperty Name="Ora_Sosire" ColumnName="Ora_Sosire" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Statiis">
+      <EntityTypeMapping TypeName="ROExpressEntity.Statii">
+        <MappingFragment StoreEntitySet="Statii">
+          <ScalarProperty Name="ID_Statie" ColumnName="ID_Statie" />
+          <ScalarProperty Name="Nume_Oras" ColumnName="Nume_Oras" />
+          <ScalarProperty Name="Latitudine" ColumnName="Latitudine" />
+          <ScalarProperty Name="Longitudine" ColumnName="Longitudine" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Statii_Tren">
+      <EntityTypeMapping TypeName="ROExpressEntity.Statii_Tren">
+        <MappingFragment StoreEntitySet="Statii_Tren">
+          <ScalarProperty Name="ID_Statie_Tren" ColumnName="ID_Statie_Tren" />
+          <ScalarProperty Name="ID_Statie" ColumnName="ID_Statie" />
+          <ScalarProperty Name="ID_Tren" ColumnName="ID_Tren" />
+          <ScalarProperty Name="Ora_Plecare" ColumnName="Ora_Plecare" />
+          <ScalarProperty Name="Ora_Sosire" ColumnName="Ora_Sosire" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ROExpressEntity.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tipuri_Vagoane">
+      <EntityTypeMapping TypeName="ROExpressEntity.Tipuri_Vagoane">
+        <MappingFragment StoreEntitySet="Tipuri_Vagoane">
+          <ScalarProperty Name="ID_Vagon" ColumnName="ID_Vagon" />
+          <ScalarProperty Name="Clasa_Vagon" ColumnName="Clasa_Vagon" />
+          <ScalarProperty Name="Nr_Locuri" ColumnName="Nr_Locuri" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trenuris">
+      <EntityTypeMapping TypeName="ROExpressEntity.Trenuri">
+        <MappingFragment StoreEntitySet="Trenuri">
+          <ScalarProperty Name="ID_Tren" ColumnName="ID_Tren" />
+          <ScalarProperty Name="Tip_Tren" ColumnName="Tip_Tren" />
+          <ScalarProperty Name="Viteza_Maxima" ColumnName="Viteza_Maxima" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vagoane_Tren">
+      <EntityTypeMapping TypeName="ROExpressEntity.Vagoane_Tren">
+        <MappingFragment StoreEntitySet="Vagoane_Tren">
+          <ScalarProperty Name="ID_Vagoane_Tren" ColumnName="ID_Vagoane_Tren" />
+          <ScalarProperty Name="ID_Tren" ColumnName="ID_Tren" />
+          <ScalarProperty Name="ID_Vagon" ColumnName="ID_Vagon" />
+          <ScalarProperty Name="Nr_Vagon" ColumnName="Nr_Vagon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetCityHops" FunctionName="ROExpressEntity.Store.GetCityHops">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ROExpressEntity.GetCityHops_Result">
+          <ScalarProperty Name="ID_Tren" ColumnName="ID_Tren" />
+          <ScalarProperty Name="Nume_Oras" ColumnName="Nume_Oras" />
+          <ScalarProperty Name="Latitudine" ColumnName="Latitudine" />
+          <ScalarProperty Name="Longitudine" ColumnName="Longitudine" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetJourney" FunctionName="ROExpressEntity.Store.GetJourney">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ROExpressEntity.GetJourney_Result">
+          <ScalarProperty Name="TipTren" ColumnName="TipTren" />
+          <ScalarProperty Name="ID_Tren" ColumnName="ID_Tren" />
+          <ScalarProperty Name="Statie_Plecare" ColumnName="Statie Plecare" />
+          <ScalarProperty Name="Ora_Plecare" ColumnName="Ora Plecare" />
+          <ScalarProperty Name="Nume_Oras" ColumnName="Nume_Oras" />
+          <ScalarProperty Name="Ora_Sosire" ColumnName="Ora_Sosire" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ROExpressEntity.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ROExpressEntity.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ROExpressEntity.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ROExpressEntity.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ROExpressEntity.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ROExpressEntity.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ROExpressEntity.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ROExpressEntity.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ROExpressEntity.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>
